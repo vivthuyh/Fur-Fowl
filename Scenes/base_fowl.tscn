@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://ci2ee76t4bjjw"]
+
+[ext_resource type="Texture2D" uid="uid://cj8uxxd7dot86" path="res://Assets/Sprites/Characters/base-enemy-Sheet.png" id="1_67ned"]
+[ext_resource type="Script" path="res://Scripts/base_fowl.gd" id="1_ejjwa"]
+[ext_resource type="PackedScene" uid="uid://0yxmj1y1gfo8" path="res://Scenes/killzone.tscn" id="2_cd2od"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apk7j"]
+atlas = ExtResource("1_67ned")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjawr"]
+atlas = ExtResource("1_67ned")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mhkv"]
+atlas = ExtResource("1_67ned")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4jug"]
+atlas = ExtResource("1_67ned")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pttxd"]
+atlas = ExtResource("1_67ned")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvghw"]
+atlas = ExtResource("1_67ned")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slaw0"]
+atlas = ExtResource("1_67ned")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1nv8i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apk7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjawr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mhkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4jug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pttxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvghw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slaw0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k18uv"]
+radius = 9.0
+
+[node name="base-fowl" type="Node2D"]
+script = ExtResource("1_ejjwa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 7
+sprite_frames = SubResource("SpriteFrames_1nv8i")
+autoplay = "default"
+frame_progress = 0.312187
+flip_h = true
+
+[node name="killzone" parent="." instance=ExtResource("2_cd2od")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+visibility_layer = 2
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_k18uv")
+
+[node name="RayCast Right" type="RayCast2D" parent="."]
+position = Vector2(0, 7)
+target_position = Vector2(17, 0)
+
+[node name="RayCast Left" type="RayCast2D" parent="."]
+position = Vector2(0, 7)
+target_position = Vector2(-17, 0)
